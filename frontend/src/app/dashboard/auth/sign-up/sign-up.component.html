@@ -1,0 +1,144 @@
+<div class="page-header clear-filter">
+    <div class="page-header-image " 
+        style="background-image: url('assets/img/cover3.png');">
+
+    </div>
+    <div class="container">
+        <div class="content-center brand">
+            <h1 >Sign Up</h1>
+            <h3>Make the right decision at right time. You will never lose</h3>
+            <button type="button" class="btn btn-primary" (click)="scroll(target)">Sign Up Now</button>
+        </div>
+    </div>
+</div>
+
+<div class="main" [ng2-loading]="isDataLoading">
+    <div class="section">
+        <div class="container">
+            <div class="row" #target>
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div class="form-card" style="margin-top: 100px; margin-bottom: 100px;">
+                        <h3>Sign Up</h3>
+                        <hr>
+                        <form role="form" [formGroup]="inputForm">
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">Account type*</label>
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="type">
+                                            <option value="" disabled selected>Select account type*</option>
+                                            <option value="seller">Seller</option>
+                                            <option value="buyer">Buyer</option>
+                                        </select>
+                                        <div *ngIf="isFieldValid(inputForm, 'type')" class="error-msg-display">
+                                            Account type is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">First name*</label>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="First name*" class="form-control"
+                                            formControlName="first_name" />
+                                        <div *ngIf="isFieldValid(inputForm, 'first_name')" class="error-msg-display">
+                                            First name is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">Last name*</label>
+                                    <div class="form-group">
+                                        <input type="text"  placeholder="Last name*" class="form-control"
+                                            formControlName="last_name" />
+                                        <div *ngIf="isFieldValid(inputForm, 'last_name')" class="error-msg-display">
+                                            Last name is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">Email*</label>
+                                    <div class="form-group">
+                                        <input type="text"  placeholder="Email*" class="form-control"
+                                            formControlName="email" />
+                                        <div *ngIf="isFieldValid(inputForm, 'email')" class="error-msg-display">
+                                            Valid email is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">Phone*</label>
+                                    <div class="form-group">
+                                        <input type="text"  placeholder="Phone*" class="form-control"
+                                            formControlName="phone" />
+                                        <div *ngIf="isFieldValid(inputForm, 'phone')" class="error-msg-display">
+                                            Valid phone number is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">Address*</label>
+                                    <div class="form-group">
+                                        <input type="text"  placeholder="Address*" class="form-control"
+                                            formControlName="address" />
+                                        <div *ngIf="isFieldValid(inputForm, 'address')" class="error-msg-display">
+                                            Address is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">Password*</label>
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Password*" class="form-control"
+                                            formControlName="password" />
+                                        <div *ngIf="isFieldValid(inputForm, 'password')" class="error-msg-display">
+                                            Password is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12" align="left">
+                                    <label style="text-align: left;">Confirm password*</label>
+                                    <div class="form-group">
+                                        <input type="password"  placeholder="Confirm password*" class="form-control"
+                                            formControlName="confirm_password" />
+                                        <div *ngIf="isFieldValid(inputForm, 'confirm_password')"
+                                            class="error-msg-display">
+                                            Confirm password is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary" [disabled]="!inputForm.valid || isDataLoading" (click)="singUp()">Sign Up</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

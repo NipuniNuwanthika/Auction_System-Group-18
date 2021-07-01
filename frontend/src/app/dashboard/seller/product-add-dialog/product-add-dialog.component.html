@@ -1,0 +1,107 @@
+<div [ng2-loading]="isDataLoading">
+
+    <div class="row">
+        <div class="col-8">
+            <h2>Add new product</h2>
+        </div>
+        <div class="col-4" align="right">
+            <button class="btn btn-icon btn-2 btn-secondary btn-sm" type="button" (click)="closeDialog()">
+                <span class="btn-inner--icon"><i class="fas fa-times"></i></span>
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <form role="form" [formGroup]="inputForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-3"><label>Name*</label></div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <input class="form-control form-control-alternative" placeholder="Product name*"
+                                    type="text" formControlName="name">
+                                <div *ngIf="isFieldValid(inputForm, 'name')" class="error-msg-display">
+                                    Valid name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"><label>Bid min price(Rs)*</label></div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <input class="form-control form-control-alternative" placeholder="Selling price(Rs)*"
+                                    type="text" formControlName="price">
+                                <div *ngIf="isFieldValid(inputForm, 'price')" class="error-msg-display">
+                                    Valid price is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"><label>Description</label></div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" placeholder="Product description"
+                                    formControlName="description"></textarea>
+                                <div *ngIf="isFieldValid(inputForm, 'description')" class="error-msg-display">
+                                    Valid description is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Select product images</h4>
+                            <input type="file" style="display: none;" (change)="onFileSelected($event)" #fileInput
+                                multiple accept="image/x-png,image/gif,image/jpeg">
+                            <button class="btn btn-primary btn-round" type="button" (click)="fileInput.click()">Select
+                                images
+                            </button>
+                            <br>
+                           
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4" *ngFor='let url of urls; let imageIndex = index;' style="margin-top: 10px;">
+                            <div align="right">
+                                <button class="btn btn-danger btn-sm" type="button" (click)="removeImage(imageIndex)">x
+                                </button>
+                            </div>
+                            <div align="center">
+                                <img [src]="url" width="100%" style="margin-left:1%;margin-top:2%">
+                            </div>
+                            <div align="left" style="margin-top: 10px;">
+                                <div class="custom-control custom-control-alternative custom-radio mb-3">
+                                    <input class="custom-control-input" type="radio"
+                                        [checked]="defaultImageIndex == imageIndex"
+                                        (change)='setDefaultImage(imageIndex)' id="{{imageIndex}}"
+                                        value="{{imageIndex}}">
+                                    <label class="custom-control-label" for="{{imageIndex}}"> &nbsp;&nbsp; Set as
+                                        default</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div align="end">
+        <hr>
+        <button type="button" class="btn btn-primary" [disabled]="!inputForm.valid || isDataLoading"
+            (click)="validateData()"> ADD
+        </button>
+        <button class="btn btn-primary" style="margin-left: 2%" (click)="closeDialog()">CLOSE</button>
+    </div>
+
+</div>

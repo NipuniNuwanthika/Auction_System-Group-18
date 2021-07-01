@@ -1,0 +1,14 @@
+<h2 mat-dialog-title style="text-align: center">{{successTitle}}</h2>
+
+<mat-dialog-content>
+  <div align="center">
+    <p>{{msg}}</p>
+  </div>
+</mat-dialog-content>
+<hr>
+<div class="row">
+  <div class="col-md-12" align="right">
+    <button class="btn btn-danger" (click)="confirm()">YES</button> &nbsp;&nbsp;
+    <button class="btn btn-secondary"(click)="close()">CLOSE</button> 
+  </div>
+</div>

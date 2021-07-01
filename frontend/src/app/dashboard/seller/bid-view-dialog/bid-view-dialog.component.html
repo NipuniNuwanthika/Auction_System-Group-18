@@ -1,0 +1,53 @@
+<div [ng2-loading]="isDataLoading">
+
+    <div class="row">
+        <div class="col-8">
+            <h3>All Bids of This Product</h3>
+        </div>
+        <div class="col-4" align="right">
+            <button class="btn btn-icon btn-2 btn-secondary btn-sm" type="button" (click)="closeDialog()">
+                <span class="btn-inner--icon"><i class="fas fa-times"></i></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row" *ngIf="!isDataLoading && dataList.length > 0">
+            <div class="col-12">
+                <table>
+                    <tr>
+                        <th>Buyer</th>
+                        <th>Phone</th>
+                        <th>Date</th>
+                        <th>Bid(Rs)</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr *ngFor="let data of dataList; let i = index;">
+                        <td>
+                            {{data.buyer.first_name}} {{data.buyer.last_name}}
+                        </td>
+                        <td>{{data.buyer.phone}}</td>
+                        <td>{{data.createdAt | date: 'mediumDate'}}</td>
+                        <td>{{data.price | number : '1.2-2' }}</td>
+                        <td>
+                            <button type="button" class="btn btn-success btn-round"
+                                (click)="openBidCloseConfirmDialog(data)">Choose Bid</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!isDataLoading && dataList.length == 0">
+            <div class="col-12">
+                <p>No bid for this product yet</p>
+            </div>
+        </div>
+    </div>
+
+    <div align="end">
+        <hr>
+        <button class="btn btn-primary" style="margin-left: 2%" (click)="closeDialog()">CLOSE</button>
+    </div>
+
+</div>

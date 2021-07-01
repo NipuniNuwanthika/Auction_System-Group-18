@@ -1,0 +1,38 @@
+<div [ng2-loading]="isDataLoading">
+    <div class="top-nav-bg"></div>
+
+    <div class="container-fluid" style="margin-top: 30px; margin-bottom: 30px;">
+        <div class="row" *ngIf="!isDataLoading && dataList.length > 0">
+            <div class="col-12" align="center">
+                <h3>All Products</h3>
+            </div>
+            <div class="col-3" *ngFor="let data of dataList; let i = index;">
+                <div class="product-box" align="center">
+                    <img [src]="imageLoadPath + data.images[data.default_image]" style="cursor: pointer;"
+                        (click)="open(data.images)">
+                    <p style="margin-top: 10px;"><b>{{data.name}}</b></p>
+                    <p style="margin-top: -10px;">{{data.description}}</p>
+                    <p style="font-size: 20px; margin-bottom: -5px;">{{data.price | number : '1.2-2'}} Rs</p>
+                    <ng-container *ngIf="data.max_bid != undefined && data.max_bid != null">
+                        <p style="font-size: 14px; margin-bottom: -5px; color: rgb(221, 42, 72);">Current Max Bid
+                            {{data.max_bid.price | number : '1.2-2'}} Rs</p>
+                    </ng-container>
+                    <ng-container *ngIf="data.sold_bid == null || data.sold_bid == undefined">
+                        <button type="button" class="btn btn-primary btn-round" (click)="placeBid(data, i)">Bid Now</button>
+                    </ng-container>
+                    <ng-container *ngIf="data.sold_bid != null && data.sold_bid != undefined">
+                        <span style="margin-top: 20px;" *ngIf="data.status != 'open_bit'" class="badge badge-success">This Product Sold At : {{data.sold_bid.price | number : '1.2-2'}}(Rs) </span>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!isDataLoading && dataList.length == 0">
+            <div class="col-12" align="center">
+                <h3>All Products</h3>
+                <p>We are sorry! Currently no products available for bid. Try again after few minutes</p>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-msg-display{
+    font-size: 10px;
+    color: #F5375C;
+    margin-left: 4px;
+  }
+
+.top-nav-bg{
+  background-color: #FA7A50;
+  height: 80px;
+  width: 100%;
+}

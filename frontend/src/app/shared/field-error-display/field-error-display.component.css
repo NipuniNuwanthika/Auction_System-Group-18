@@ -1,0 +1,12 @@
+.error-msg {
+    color: #F5375C;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    font-size: 75%;
+    top: calc(100% );
+  }
+  .fix-error-icon {
+    top: 27px;
+  }
+  

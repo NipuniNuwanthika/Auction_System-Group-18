@@ -1,0 +1,79 @@
+<div [ng2-loading]="isDataLoading">
+
+
+    <div class="top-nav-bg"></div>
+    <div class="seller-nav-bar">
+        <div class="row">
+            <div class="col-6">
+                <h4 style="margin-top: 10px;">Seller Dashboard</h4>
+            </div>
+            <div class="col-6" align="right">
+                <button type="button" class="btn btn-primary btn-round" (click)="openAddDialog()"
+                    style="margin-right: 10px;">Add New
+                    Product</button>
+
+                <button type="button" class="btn btn-primary btn-just-icon" (click)="openBlockConfirmDialog()"><i
+                        class="fa fa-lock"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin-bottom: 100px;">
+        <div class="row" *ngIf="!isDataLoading && dataList.length > 0">
+            <div class="col-12">
+                <div align="center">
+                    <h3>My Product List</h3>
+                </div>
+                <table>
+                    <tr>
+                        <th>Images</th>
+                        <th>Name</th>
+                        <th>Price(Rs)</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr *ngFor="let data of dataList; let i = index;">
+                        <td>
+                            <div align="center">
+                                <img style="cursor: pointer;" [src]="imageLoadPath + data.images[data.default_image]"
+                                    width="100px" (click)="open(data.images)">
+                            </div>
+                        </td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.price | number : '1.2-2' }}</td>
+                        <td>{{data.description }}</td>
+                        <td>
+                            <span *ngIf="data.status == 'open_bit'" class="badge badge-warning">Open Bid</span>
+                            <span *ngIf="data.status != 'open_bit'" class="badge badge-success">Close Bid</span>
+                        </td>
+                        <td>
+                            <button *ngIf="data.status == 'open_bit'" type="button" class="btn btn-secondary btn-round"
+                                (click)="openBidViewDialog(data)">View Bids</button>
+                            <ng-container *ngIf="data.status != 'open_bit'">
+                                <span *ngIf="data.sold_bid.isPayed == true" class="badge badge-success">Payment
+                                    Received</span>
+                                <span *ngIf="data.sold_bid.isPayed == false" class="badge badge-danger">Payment
+                                    Pending</span>
+                                <p>Sold Price(Rs) : <b>{{data.sold_bid.price | number : '1.2-2'}}</b></p>
+                            </ng-container>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="row" *ngIf="!isDataLoading && dataList.length == 0">
+            <div class="col-12">
+                <div align="center">
+                    <h3>My Product List</h3>
+                    <p>No previous product found</p>
+                    <button type="button" class="btn btn-primary btn-round" (click)="openAddDialog()">Add New
+                        Product</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,83 @@
+<div [ng2-loading]="isDataLoading">
+
+    <div class="row">
+        <div class="col-8">
+            <h2>Pay Now</h2>
+        </div>
+        <div class="col-4" align="right">
+            <button class="btn btn-icon btn-2 btn-secondary btn-sm" type="button" (click)="closeDialog()">
+                <span class="btn-inner--icon"><i class="fas fa-times"></i></span>
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <form role="form" [formGroup]="inputForm">
+            <div class="row">
+                <div class="col-12" align="center">
+                    
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-3"><label>Name*</label></div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <input class="form-control form-control-alternative" placeholder="Name*" type="text"
+                                    formControlName="name">
+                                <div *ngIf="isFieldValid(inputForm, 'name')" class="error-msg-display">
+                                    Name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"><label>Bank*</label></div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <input class="form-control form-control-alternative" placeholder="Bank*" type="text"
+                                    formControlName="bank">
+                                <div *ngIf="isFieldValid(inputForm, 'bank')" class="error-msg-display">
+                                    Bank is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"><label>Account number*</label></div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <input class="form-control form-control-alternative" placeholder="Account number*"
+                                    type="text" formControlName="account_number">
+                                <div *ngIf="isFieldValid(inputForm, 'account_number')" class="error-msg-display">
+                                    Account number is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3"><label>Branch*</label></div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <input class="form-control form-control-alternative" placeholder="Branch*" type="text"
+                                    formControlName="branch">
+                                <div *ngIf="isFieldValid(inputForm, 'branch')" class="error-msg-display">
+                                    Branch is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div align="end">
+        <hr>
+        <button type="button" class="btn btn-primary" [disabled]="!inputForm.valid || isDataLoading" (click)="save()">
+            PAY NOW
+        </button>
+        <button class="btn btn-primary" style="margin-left: 2%" (click)="closeDialog()">CLOSE</button>
+    </div>
+
+</div>
